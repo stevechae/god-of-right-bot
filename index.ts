@@ -1,7 +1,6 @@
 import { Client, Intents } from 'discord.js';
-import { token } from './config.json';
 
-const client = new Client({intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MESSAGE_REACTIONS] });
+const client = new Client({intents: [Intents.FLAGS.GUILDS] });
 
 client.once('ready', () => {
     console.log('Ready!');
@@ -41,4 +40,6 @@ client.on('interactionCreate', async (interaction) => {
     }
 })
 
-client.login(token);
+console.log(process.env.DISCORD_TOKEN)
+
+client.login(process.env.DISCORD_TOKEN);
