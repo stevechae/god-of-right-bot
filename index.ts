@@ -38,8 +38,6 @@ client.on('interactionCreate', async (interaction) => {
         default:
             break;
     }
-})
-
-console.log(process.env.DISCORD_TOKEN)
+});
 
 client.login(process.env.DISCORD_TOKEN);
