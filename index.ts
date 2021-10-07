@@ -18,12 +18,6 @@ const bikeFailGifs = [
     'https://tenor.com/view/crashing-jonas-brothers-olympic-dreams-featuring-jonas-brothers-bike-crash-clash-gif-22561162'
 ];
 
-const yoonSoRyongGifs = [
-    'https://tenor.com/view/bruce-lee-flex-%E6%9D%8E%E5%B0%8F%E9%BE%99-gif-8528490',
-    'https://tenor.com/view/bruce-lee-karate-slow-motion-fight-me-lets-fight-gif-16092390',
-    'https://tenor.com/view/stare-blood-bruce-lee-lick-gif-15754424',
-]
-
 const kimsungmoImgs = [
     'http://file.instiz.net/data/file/20130128/2/d/0/2d02e1c31c1c36aa77e08b7778625ca1',
     'http://file.instiz.net/data/file/20130128/2/2/7/227945e23baa2dcf8324f03acd26c885',
@@ -53,7 +47,8 @@ const stockStuffRenderer = async (symbol: string) => {
                 token: process.env.IEX_API_TOKEN
             }
         })).data;
-        let replyMsg = `${data.companyName} (${data.symbol}): ${data.currency} \$${data.delayedPrice} (**${(data.changePercent * 100).toFixed(2)}%**)`;
+        const changePerc = ((data.changePercent < 0) ? '-' : '+') + Math.abs(data.changePercent * 100).toFixed(2);
+        let replyMsg = `${data.companyName} (${data.symbol}): ${data.currency} \$${data.iexRealtimePrice} (**${changePerc}%**)`;
         if (data.changePercent > 0) {
             replyMsg += ' TO THE MOON :rocket: :rocket: :rocket:';
         } else {
