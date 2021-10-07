@@ -1,4 +1,5 @@
 import { Client, Intents } from 'discord.js';
+import axios from 'axios';
 
 const client = new Client({intents: [Intents.FLAGS.GUILDS] });
 
@@ -23,6 +24,29 @@ const yoonSoRyongGifs = [
     'https://tenor.com/view/stare-blood-bruce-lee-lick-gif-15754424',
 ]
 
+const iexUrl = process.env.IEX_API_URL;
+
+const stockStuffRenderer = async (symbol: string) => {
+    try {
+        const data: any = (await axios.get(`https://${iexUrl}/stable/stock/${symbol}/quote`, {
+            params: {
+                token: process.env.IEX_API_TOKEN
+            }
+        })).data;
+        let replyMsg = `${data.companyName} (${data.symbol}): ${data.currency} \$${data.delayedPrice} (**${(data.changePercent * 100).toFixed(2)}%**)`;
+        if (data.changePercent > 0) {
+            replyMsg += ' TO THE MOON :rocket: :rocket: :rocket:';
+        } else {
+            replyMsg += ' FUUUCK :cry: :cry: :cry:';
+        }
+
+        return replyMsg;
+    } catch (error) {
+        console.error(error);
+        return "Error. Couldn't get it.";
+    }
+}
+
 client.on('interactionCreate', async (interaction) => {
     if (!interaction.isCommand()) return;
 
@@ -34,6 +58,20 @@ client.on('interactionCreate', async (interaction) => {
             break;
         case 'sjy':
             await interaction.reply(yoonSoRyongGifs[Math.floor(Math.random() * yoonSoRyongGifs.length)])
+            break;
+        case 'amc':
+            await interaction.reply(await stockStuffRenderer(commandName));
+            break;
+        case 'gme':
+            await interaction.reply(await stockStuffRenderer(commandName));
+            break;
+        case 'btc':
+            const data: any = (await axios.get(`https://${iexUrl}/stable/crypto/btcusd/price`, {
+                params: {
+                    token: process.env.IEX_API_TOKEN
+                }
+            })).data;
+            await interaction.reply(`Bitgoin USD: $${data.price}`);
             break;
         default:
             break;
