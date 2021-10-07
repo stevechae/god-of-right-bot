@@ -18,12 +18,6 @@ const bikeFailGifs = [
     'https://tenor.com/view/crashing-jonas-brothers-olympic-dreams-featuring-jonas-brothers-bike-crash-clash-gif-22561162'
 ];
 
-const yoonSoRyongGifs = [
-    'https://tenor.com/view/bruce-lee-flex-%E6%9D%8E%E5%B0%8F%E9%BE%99-gif-8528490',
-    'https://tenor.com/view/bruce-lee-karate-slow-motion-fight-me-lets-fight-gif-16092390',
-    'https://tenor.com/view/stare-blood-bruce-lee-lick-gif-15754424',
-]
-
 const iexUrl = process.env.IEX_API_URL;
 
 const stockStuffRenderer = async (symbol: string) => {
@@ -55,9 +49,6 @@ client.on('interactionCreate', async (interaction) => {
     switch(commandName) {
         case 'fbike':
             await interaction.reply(bikeFailGifs[Math.floor(Math.random() * bikeFailGifs.length)]);
-            break;
-        case 'sjy':
-            await interaction.reply(yoonSoRyongGifs[Math.floor(Math.random() * yoonSoRyongGifs.length)])
             break;
         case 'amc':
             await interaction.reply(await stockStuffRenderer(commandName));
