@@ -76,9 +76,6 @@ client.on('interactionCreate', async (interaction) => {
         case 'fbike':
             await interaction.reply(bikeFailGifs[Math.floor(Math.random() * bikeFailGifs.length)]);
             break;
-        case 'sjy':
-            await interaction.reply(yoonSoRyongGifs[Math.floor(Math.random() * yoonSoRyongGifs.length)])
-            break;
         case 'amc':
             await interaction.reply(await stockStuffRenderer(commandName));
             break;
