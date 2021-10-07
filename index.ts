@@ -43,9 +43,9 @@ const stockStuffRenderer = async (symbol: string) => {
         const changePerc = ((data.changePercent < 0) ? '-' : '+') + Math.abs(data.changePercent * 100).toFixed(2);
         let replyMsg = `${data.companyName} (${data.symbol}): ${data.currency} \$${data.iexRealtimePrice} (**${changePerc}%**)`;
         if (data.changePercent > 0) {
-            replyMsg += ' TO THE MOON :rocket: :rocket: :rocket:';
+            replyMsg += ' :rocket: :rocket: :rocket: https://tenor.com/view/hoge-hoge-finance-rise-arrow-gif-21389148';
         } else {
-            replyMsg += ' FUUUCK :cry: :cry: :cry:';
+            replyMsg += ' :cry: :cry: :cry: https://tenor.com/view/rage-red-stocks-crash-stocks-crashing-downwards-gif-17056650';
         }
 
         return replyMsg;
