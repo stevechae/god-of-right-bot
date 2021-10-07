@@ -7,7 +7,8 @@ const commands = [
     new SlashCommandBuilder().setName('fbike').setDescription('fuck bikes'),
     new SlashCommandBuilder().setName('amc').setDescription('How\'s AMC doing today?'),
     new SlashCommandBuilder().setName('gme').setDescription('How\'s GME doing today?'),
-    new SlashCommandBuilder().setName('btc').setDescription('How\'s Bitgoin doing today?')
+    new SlashCommandBuilder().setName('btc').setDescription('How\'s Bitgoin doing today?'),
+    new SlashCommandBuilder().setName('ksm').setDescription('Do you know Kim Sungmo?')
 ]
     .map(command => command.toJSON());
 
