@@ -34,6 +34,7 @@ const kimsungmoImgs = [
     'https://cdn.ppomppu.co.kr/zboard/data3/2017/0529/m_20170529232217_icmchepi.jpg',
     'http://simg.donga.com/ugc/MLBPARK/Board/16/29/80/98/16298098223392.jpg',
     'https://www.ibric.org/upload/geditor/202009/0.01173000_1601395333.jpg',
+    'https://i1.ruliweb.com/img/21/01/18/177147253fb5381d2.jpg'
 ]
 
 const iexUrl = process.env.IEX_API_URL;
