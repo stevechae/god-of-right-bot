@@ -55,6 +55,15 @@ const stockStuffRenderer = async (symbol: string) => {
         return "Error. Couldn't get it.";
     }
 }
+const weatherRenderer = async () => {
+    try {
+        const data: any = (await axios.get(`api.openweathermap.org/data/2.5/weather?q=toronto,ca&units=metric&appId=4b7ade0750ecf707bcd15c282cf8c621`)).data;
+        return "temp : " + data.main.temp + ", feels like : " + data.main.feels_like + ", humidity : " + data.main.humidity;
+    } catch (error) {
+        console.error(error);
+        return "Error. Couldn't get it.";
+    }
+}
 
 client.on('interactionCreate', async (interaction) => {
     if (!interaction.isCommand()) return;
@@ -81,6 +90,9 @@ client.on('interactionCreate', async (interaction) => {
             break;
         case 'ksm':
             await interaction.reply(kimsungmoImgs[Math.floor(Math.random() * kimsungmoImgs.length)]);
+            break;
+        case 'weather':
+            await  interaction.reply(weatherRenderer());
             break;
         case 'emperor':
             const tronaldQuoteRaw: any = await getRandomTronaldQuote();
