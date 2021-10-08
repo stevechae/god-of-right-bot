@@ -9,7 +9,8 @@ const commands = [
     new SlashCommandBuilder().setName('gme').setDescription('How\'s GME doing today?'),
     new SlashCommandBuilder().setName('btc').setDescription('How\'s Bitgoin doing today?'),
     new SlashCommandBuilder().setName('ksm').setDescription('Do you know Kim Sungmo?'),
-    new SlashCommandBuilder().setName('emperor').setDescription('Inspiring quotes from the Emperor')
+    new SlashCommandBuilder().setName('emperor').setDescription('Inspiring quotes from the Emperor'),
+    new SlashCommandBuilder().setName('weather').setDescription('How\'s weather now?')
 ]
     .map(command => command.toJSON());
 
