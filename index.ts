@@ -1,5 +1,6 @@
 import { Client, Intents } from 'discord.js';
 import axios from 'axios';
+import { getRandomTronaldQuote } from './tronald_quotes';
 
 const client = new Client({intents: [Intents.FLAGS.GUILDS] });
 
@@ -80,6 +81,11 @@ client.on('interactionCreate', async (interaction) => {
             break;
         case 'ksm':
             await interaction.reply(kimsungmoImgs[Math.floor(Math.random() * kimsungmoImgs.length)]);
+            break;
+        case 'emperor':
+            const tronaldQuoteRaw: any = await getRandomTronaldQuote();
+            const formattedQuote = `"${tronaldQuoteRaw.value}" - God Emperor of Mankind`;
+            await interaction.reply(formattedQuote);
             break;
         default:
             break;
