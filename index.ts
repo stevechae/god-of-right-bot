@@ -27,7 +27,7 @@ const kimsungmoImgs = [
     'https://mblogthumb-phinf.pstatic.net/20160325_87/crebugs_m_1458889577268Hd15k_JPEG/%B1%E8%C8%AD%B9%E98.jpg?type=w2',
     'https://mblogthumb-phinf.pstatic.net/20160325_240/crebugs_m_1458889577414ORwIB_JPEG/%B1%E8%C8%AD%B9%E99.jpg?type=w2',
     'https://cdn.ppomppu.co.kr/zboard/data3/2017/0529/m_20170529232217_icmchepi.jpg',
-    'http://simg.donga.com/ugc/MLBPARK/Board/16/29/80/98/16298098223392.jpg',
+    'https://cdn.discordapp.com/attachments/203648834470019082/896282342556041226/16298098223392.png',
     'https://www.ibric.org/upload/geditor/202009/0.01173000_1601395333.jpg',
     'https://i1.ruliweb.com/img/21/01/18/177147253fb5381d2.jpg'
 ];
