@@ -58,7 +58,7 @@ const stockStuffRenderer = async (symbol: string) => {
 const weatherRenderer = async () => {
     try {
         const data: any = (await axios.get(`api.openweathermap.org/data/2.5/weather?q=toronto,ca&units=metric&appId=4b7ade0750ecf707bcd15c282cf8c621`)).data;
-        return "temp : " + data.main.temp + ", feels like : " + data.main.feels_like + ", humidity : " + data.main.humidity;
+        return data.weather[0].main + ", temp : " + data.main.temp + ", feels like : " + data.main.feels_like + ", humidity : " + data.main.humidity;
     } catch (error) {
         console.error(error);
         return "Error. Couldn't get it.";
