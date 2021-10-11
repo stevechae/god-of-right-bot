@@ -47,7 +47,7 @@ const stockStuffRenderer = async (symbol: string) => {
         if (data.changePercent > 0) {
             replyMsg += ' :rocket: :rocket: :rocket: https://tenor.com/view/hoge-hoge-finance-rise-arrow-gif-21389148';
         } else {
-            replyMsg += ' :cry: :cry: :cry: https://tenor.com/view/rage-red-stocks-crash-stocks-crashing-downwards-gif-17056650';
+            replyMsg += ' :gem: :raised_hands: https://tenor.com/view/rage-red-stocks-crash-stocks-crashing-downwards-gif-17056650';
         }
 
         return replyMsg;
