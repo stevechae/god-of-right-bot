@@ -41,8 +41,7 @@ const stockStuffRenderer = async (symbol: string) => {
                 token: process.env.IEX_API_TOKEN
             }
         })).data;
-        console.log(data);
-        let price = (data.iexRealtimePrice) ? data.iexRealtimePrice : data.delayedPrice;
+        let price = (data.iexRealtimePrice !== null) ? data.iexRealtimePrice : data.delayedPrice;
         const changePerc = ((data.changePercent < 0) ? '-' : '+') + Math.abs(data.changePercent * 100).toFixed(2);
         let replyMsg = `${data.companyName} (${data.symbol}): ${data.currency} \$${price} (**${changePerc}%**)`;
         if (data.changePercent > 0) {
