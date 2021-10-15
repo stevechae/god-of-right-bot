@@ -41,9 +41,16 @@ const kimsungmoImgs = [
     'https://obj-sg.thewiki.kr/data/6174746163686d656e742f61303038303833345f353035663235643532323236322e6a7067.jpg',
     'https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2F20120528_268%2Fbmh_1990_1338191307146GW0PK_PNG%2Fvn.png&type=sc960_832',
     'https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2F20120530_124%2Fbmh_1990_1338361826652EbJfE_PNG%2F%25BE%25C6%25B7%25C3%25C7%25D1_%25B1%25E2%25BE%25EF__%25B7%25B0%25C5%25B0%25C2%25AF_%25B8%25EE_%25C0%25E5%25B8%25E9%25B5%25E9%25C0%25BB_%25B5%25C7%25BB%25F5%25B0%25DC%25BA%25B8%25B4%25D9...____%25B3%25D7%25C0%25CC%25B9%25F6%25BA%25ED%25B7%25CE%25B1%25D7.png&type=sc960_832',
-    'https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2F20120530_40%2Fbmh_1990_1338361824617SlOBa_PNG%2F%25B9%25D9%25C5%25B0.png&type=sc960_832',
     'https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2F20120528_193%2Fbmh_1990_1338190544263AbDg0_PNG%2F%25C0%25FC%25B4%25EB%25B8%25F0_%25B4%25EB%25C7%25D0%25BB%25FD_%25B7%25B9%25C6%25F7%25C6%25AE_%25C5%25E4%25C0%25CD_%25C1%25B7%25BA%25B8_%25BD%25BA%25C6%25E5_%25B0%25F8%25B8%25F0%25C0%25FC_%25C0%25DA%25B0%25DD%25C1%25F5_%25C6%25ED%25C0%25D4%25C7%25D0_____%25B3%25D7%25C0%25CC%25B9%25F6_%25C4%25AB%25C6%25E4.png&type=sc960_832',
-    'https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2F20120528_282%2Fbmh_1990_1338190544421KD0Ah_PNG%2Fbb.png&type=sc960_832'
+    'https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2F20120528_282%2Fbmh_1990_1338190544421KD0Ah_PNG%2Fbb.png&type=sc960_832',
+    'https://search.pstatic.net/common/?src=http%3A%2F%2Fcafefiles.naver.net%2F20150801_36%2Ffujisakinade_1438421005674TSMI1_PNG%2FScreenshot_2015-08-01-12-29-18-1.png&type=sc960_832',
+    'https://search.pstatic.net/common/?src=http%3A%2F%2Fcafefiles.naver.net%2FMjAxNzEyMTJfMjk5%2FMDAxNTEzMDg5NjUxNjM0.DKQ8-dI5ndi3oeLLAnSk9LnI3K9RUyE6CVRNb5NS4kog._jrOv1FPT7xU_3I_YNC9xdmaXfP9mF4Q-0PnOI2bWFkg.JPEG.kyk990314%2FexternalFile.jpg&type=sc960_832',
+    'https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAxOTEwMTFfMjQ1%2FMDAxNTcwNzk1OTY5MjU2.EX-WjrlPRqCSq8eYchYou1-5WiqGPyqhdUa2JUpJfMMg.i3QwdvWKuwXkoPkLqCw153aEor30A12vw1lEbtDApFUg.JPEG.3llll%2F1570592552.jpg&type=sc960_832',
+    'https://search.pstatic.net/common/?src=http%3A%2F%2Fcafefiles.naver.net%2F20140827_163%2Fskdksgo234_1409076028052KkdtQ_JPEG%2FNa1409076015383.jpg&type=sc960_832',
+    'https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2F20120609_151%2Fvanpelt_1339172163783WXj9V_JPEG%2F111.jpg&type=sc960_832',
+    'https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAxOTA4MDlfMTU3%2FMDAxNTY1MzE2NTY3NDk3.i2bYrSEuE63-i10Cekta4OsruTe2BDZjo33I93v6RsMg.XGj5FfsLJeQO5gZ1goY41yUrGaFpDxHvb-_3gLFjdO8g.GIF.0526hansu%2FNaverBlog_20190809_110926_00.gif&type=sc960_832_gif',
+    'https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2F20090918_70%2Fwoodall1_1253258004119XHLos_jpg%2F%25B4%25EB%25B7%25AB_%25C1%25A4%25BD%25C5%25C0%25CC_%25B8%25DB_woodall1.jpg&type=sc960_832',
+    'https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2F20160330_194%2Fqpfpzk9876_145931218389736zR4_JPEG%2F2016-03-30-13-24-46.jpg&type=sc960_832'
 ];
 
 const iexUrl = process.env.IEX_API_URL;

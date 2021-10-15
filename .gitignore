@@ -103,8 +103,10 @@ dist
 # TernJS port file
 .tern-port
 
-config.json
+config-test.json
 
 *.js
 
 .idea
+
+config*.json
