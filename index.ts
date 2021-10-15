@@ -50,7 +50,13 @@ const kimsungmoImgs = [
     'https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2F20120609_151%2Fvanpelt_1339172163783WXj9V_JPEG%2F111.jpg&type=sc960_832',
     'https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAxOTA4MDlfMTU3%2FMDAxNTY1MzE2NTY3NDk3.i2bYrSEuE63-i10Cekta4OsruTe2BDZjo33I93v6RsMg.XGj5FfsLJeQO5gZ1goY41yUrGaFpDxHvb-_3gLFjdO8g.GIF.0526hansu%2FNaverBlog_20190809_110926_00.gif&type=sc960_832_gif',
     'https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2F20090918_70%2Fwoodall1_1253258004119XHLos_jpg%2F%25B4%25EB%25B7%25AB_%25C1%25A4%25BD%25C5%25C0%25CC_%25B8%25DB_woodall1.jpg&type=sc960_832',
-    'https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2F20160330_194%2Fqpfpzk9876_145931218389736zR4_JPEG%2F2016-03-30-13-24-46.jpg&type=sc960_832'
+    'https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2F20160330_194%2Fqpfpzk9876_145931218389736zR4_JPEG%2F2016-03-30-13-24-46.jpg&type=sc960_832',
+    'https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2F20150824_136%2Fcn54516_1440346214542sHS0S_PNG%2F__3.png&type=sc960_832',
+    'https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2F20120628_168%2Fchris84bloom_1340848202725xeUSF_JPEG%2F0_00010.jpg&type=sc960_832',
+    'https://search.pstatic.net/common/?src=http%3A%2F%2Fcafefiles.naver.net%2FMjAxNjEwMTlfMjQz%2FMDAxNDc2ODc2NTQ3NTEx.RTNyDgJoohVpj8Op39Ev1Prr4rb3XJ07e07QLX5uXLMg.KBKLz4T0QNbxuCcBjntv_2WPz1dCxRo9pxiotmVjLAMg.JPEG.kyle0196%2FKakaoTalk_20151008_021918723.jpg&type=sc960_832',
+    'https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2F20100417_124%2Flunaticage_1271437169493hnDXc_jpg%2F2131_lunaticage.jpg&type=sc960_832',
+    'https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMTA3MDVfNzgg%2FMDAxNjI1NDQ2ODE5NzEy.RkAZL4XJys2mpxGl8JiNE-0V7os4wTcieODEazumpokg.zzdf2OI7AfLDAawyqXT5y96MEb-t3jqLNuUZDGM1GSYg.JPEG.mainz5217%2FDgOOtYwUwAEoNQ8.jpg&type=sc960_832',
+    'https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2F20150729_252%2Ffds5667_1438146535418MHUer_PNG%2F3.PNG&type=sc960_832'
 ];
 
 const iexUrl = process.env.IEX_API_URL;
