@@ -1,3 +1,5 @@
+import {SlashCommandStringOption} from "@discordjs/builders/dist/interactions/slashCommands/options/string";
+
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { REST } = require('@discordjs/rest');
 const { Routes } = require('discord-api-types/v9');
@@ -10,7 +12,9 @@ const commands = [
     new SlashCommandBuilder().setName('btc').setDescription('How\'s Bitgoin doing today?'),
     new SlashCommandBuilder().setName('ksm').setDescription('Do you know Kim Sungmo?'),
     new SlashCommandBuilder().setName('emperor').setDescription('Inspiring quotes from the Emperor'),
-    new SlashCommandBuilder().setName('weather').setDescription('How\'s weather now?')
+    new SlashCommandBuilder().setName('weather').setDescription('How\'s weather now?'),
+    new SlashCommandBuilder().setName('stock').setDescription('Any stock quote')
+        .addStringOption((option: SlashCommandStringOption) => option.setName('symbol').setDescription('Stock symbol').setRequired(true)),
 ]
     .map(command => command.toJSON());
 

@@ -29,12 +29,27 @@ const kimsungmoImgs = [
     'https://cdn.ppomppu.co.kr/zboard/data3/2017/0529/m_20170529232217_icmchepi.jpg',
     'https://cdn.discordapp.com/attachments/253942519761600512/896288425475444747/16298098223392.png',
     'https://www.ibric.org/upload/geditor/202009/0.01173000_1601395333.jpg',
-    'https://i1.ruliweb.com/img/21/01/18/177147253fb5381d2.jpg'
+    'https://i1.ruliweb.com/img/21/01/18/177147253fb5381d2.jpg',
+    'https://image5jvqbd.fmkorea.com/files/attach/new/20170501/33854530/7547092/641689329/98496eb46a3ad5026894a910f005b752.jpg',
+    'https://image5jvqbd.fmkorea.com/files/attach/new/20170501/33854530/7547092/641689329/389af809b37275b279fb436f56917d23.jpeg',
+    'https://image.fmkorea.com/files/attach/new/20180825/486616/1203205963/1232055079/6a1ae8584c9168f044b9200e28054f75.jpg',
+    'https://jjalbot.com/media/2018/12/Hkvxp8xQa/zzal.jpg',
+    'https://storage.googleapis.com/jjalbot-jjals/2016/10/SkW-TwpL0/20150402_551d41733b66b.jpg',
+    'https://storage.googleapis.com/jjalbot-jjals/2016/10/BJb03Up80/20160818_57b53434bcc22.jpg',
+    'https://storage.googleapis.com/jjalbot-jjals/2016/10/BklWFUaL0/20160825_57be513944813.jpg',
+    'https://storage.googleapis.com/jjalbot-jjals/2016/10/r1eNtLpUC/20160825_57be47332c55b.jpg',
+    'https://obj-sg.thewiki.kr/data/6174746163686d656e742f61303038303833345f353035663235643532323236322e6a7067.jpg',
+    'https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2F20120528_268%2Fbmh_1990_1338191307146GW0PK_PNG%2Fvn.png&type=sc960_832',
+    'https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2F20120530_124%2Fbmh_1990_1338361826652EbJfE_PNG%2F%25BE%25C6%25B7%25C3%25C7%25D1_%25B1%25E2%25BE%25EF__%25B7%25B0%25C5%25B0%25C2%25AF_%25B8%25EE_%25C0%25E5%25B8%25E9%25B5%25E9%25C0%25BB_%25B5%25C7%25BB%25F5%25B0%25DC%25BA%25B8%25B4%25D9...____%25B3%25D7%25C0%25CC%25B9%25F6%25BA%25ED%25B7%25CE%25B1%25D7.png&type=sc960_832',
+    'https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2F20120530_40%2Fbmh_1990_1338361824617SlOBa_PNG%2F%25B9%25D9%25C5%25B0.png&type=sc960_832',
+    'https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2F20120528_193%2Fbmh_1990_1338190544263AbDg0_PNG%2F%25C0%25FC%25B4%25EB%25B8%25F0_%25B4%25EB%25C7%25D0%25BB%25FD_%25B7%25B9%25C6%25F7%25C6%25AE_%25C5%25E4%25C0%25CD_%25C1%25B7%25BA%25B8_%25BD%25BA%25C6%25E5_%25B0%25F8%25B8%25F0%25C0%25FC_%25C0%25DA%25B0%25DD%25C1%25F5_%25C6%25ED%25C0%25D4%25C7%25D0_____%25B3%25D7%25C0%25CC%25B9%25F6_%25C4%25AB%25C6%25E4.png&type=sc960_832',
+    'https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2F20120528_282%2Fbmh_1990_1338190544421KD0Ah_PNG%2Fbb.png&type=sc960_832'
 ];
 
 const iexUrl = process.env.IEX_API_URL;
 
-const stockStuffRenderer = async (symbol: string) => {
+const stockStuffRenderer = async (symbol: string | null) => {
+    if (symbol === null) return "Error. Invalid symbol provided.";
     try {
         const data: any = (await axios.get(`https://${iexUrl}/stable/stock/${symbol}/quote`, {
             params: {
@@ -53,7 +68,7 @@ const stockStuffRenderer = async (symbol: string) => {
         return replyMsg;
     } catch (error) {
         console.error(error);
-        return "Error. Couldn't get it.";
+        return "Error. Couldn't get stock quote.";
     }
 }
 const weatherRenderer = async () => {
@@ -73,6 +88,7 @@ client.on('interactionCreate', async (interaction) => {
 
     switch(commandName) {
         case 'fbike':
+            console.log('fbike was called.');
             await interaction.reply(bikeFailGifs[Math.floor(Math.random() * bikeFailGifs.length)]);
             break;
         case 'amc':
@@ -80,6 +96,9 @@ client.on('interactionCreate', async (interaction) => {
             break;
         case 'gme':
             await interaction.reply(await stockStuffRenderer(commandName));
+            break;
+        case 'stock':
+            await interaction.reply(await stockStuffRenderer(interaction.options.getString('symbol')));
             break;
         case 'btc':
             const data: any = (await axios.get(`https://${iexUrl}/stable/crypto/btcusd/price`, {
