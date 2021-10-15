@@ -61,6 +61,20 @@ const kimsungmoImgs = [
 
 const iexUrl = process.env.IEX_API_URL;
 
+const priceRenderer = (data: any) => {
+    if (data.delayedPrice) {
+        return data.delayedPrice;
+    }
+
+    if (data.iexRealtimePrice) {
+        return data.iexRealtimePrice;
+    }
+
+    if (data.latestPrice) {
+        return data.latestPrice;
+    }
+};
+
 const stockStuffRenderer = async (symbol: string | null) => {
     if (symbol === null) return "Error. Invalid symbol provided.";
     try {
@@ -69,7 +83,7 @@ const stockStuffRenderer = async (symbol: string | null) => {
                 token: process.env.IEX_API_TOKEN
             }
         })).data;
-        let price = (data.iexRealtimePrice !== null) ? data.iexRealtimePrice : data.delayedPrice;
+        const price = priceRenderer(data);
         const changePerc = ((data.changePercent < 0) ? '-' : '+') + Math.abs(data.changePercent * 100).toFixed(2);
         let replyMsg = `${data.companyName} (${data.symbol}): ${data.currency} \$${price} (**${changePerc}%**)`;
         if (data.changePercent > 0) {
