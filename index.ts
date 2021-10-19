@@ -1,8 +1,11 @@
 import { Client, Intents } from 'discord.js';
 import axios from 'axios';
+import { Client as GMapClient } from '@googlemaps/google-maps-services-js';
 import { getRandomTronaldQuote } from './tronald_quotes';
 
 const client = new Client({intents: [Intents.FLAGS.GUILDS] });
+
+const gmapClient = new GMapClient({});
 
 client.once('ready', () => {
     console.log('Ready!');
@@ -108,6 +111,50 @@ const weatherRenderer = async (postal: string | null) => {
     }
 }
 
+const pickLunchSpots = async (postal: string | null) => {
+    if (postal === null) {
+        console.error("Invalid postal code provided by user");
+        return 'Invalid postal code.';
+    }
+
+    try {
+        const geoData = (await gmapClient.geocode({
+            params: {
+                address: `${postal}, Canada`,
+                key: process.env.GMAP_API_KEY || '',
+            }
+        })).data;
+
+        const lat = geoData.results[0].geometry.location.lat;
+        const lng = geoData.results[0].geometry.location.lng;
+
+        const nearbyData = (await gmapClient.placesNearby({
+            params: {
+                location: [lat, lng],
+                radius: 5000,
+                type: 'restaurant',
+                maxprice: 2,
+                opennow: true,
+                key: process.env.GMAP_API_KEY || '',
+            }
+        })).data;
+
+        const processedResults = nearbyData.results.map(data => ({
+            name: data.name,
+            google_rating: data.rating,
+            address: data.vicinity
+        }));
+
+        const pickedOne = processedResults[Math.floor(Math.random() * processedResults.length)];
+
+        return `How about lunch from **${pickedOne.name}\nLocated at ${pickedOne.address}**? It has a Google rating of **${pickedOne.google_rating}**`;
+    } catch (e) {
+        console.error("Failed to fetch nearby restaurants.");
+        console.error(e);
+        return ''
+    }
+}
+
 client.on('interactionCreate', async (interaction) => {
     if (!interaction.isCommand()) return;
 
@@ -145,6 +192,9 @@ client.on('interactionCreate', async (interaction) => {
             const tronaldQuoteRaw: any = await getRandomTronaldQuote();
             const formattedQuote = `"${tronaldQuoteRaw.value}" - God Emperor of Mankind`;
             await interaction.reply(formattedQuote);
+            break;
+        case 'food':
+            await interaction.reply(await pickLunchSpots(interaction.options.getString('postal')));
             break;
         default:
             break;

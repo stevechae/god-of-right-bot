@@ -17,6 +17,8 @@ const commands = [
     .addStringOption((option: SlashCommandStringOption) => option.setName('postal').setDescription('First 3 chars of postal code').setRequired(true)),
     new SlashCommandBuilder().setName('stock').setDescription('Any stock quote')
         .addStringOption((option: SlashCommandStringOption) => option.setName('symbol').setDescription('Stock symbol').setRequired(true)),
+    new SlashCommandBuilder().setName('food').setDescription('What do I eat?')
+        .addStringOption((option: SlashCommandStringOption) => option.setName('postal').setDescription('Your postal code').setRequired(true)),
 ]
     .map(command => command.toJSON());
 
