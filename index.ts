@@ -98,10 +98,10 @@ const stockStuffRenderer = async (symbol: string | null) => {
         return "Error. Couldn't get stock quote.";
     }
 }
-const weatherRenderer = async () => {
+const weatherRenderer = async (postal: string | null) => {
     try {
-        const data: any = (await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=toronto,ca&units=metric&appId=${process.env.WEATHER_API_TOKEN}`)).data;
-        return data.weather[0].main + ", temp : " + data.main.temp + ", feels like : " + data.main.feels_like + ", humidity : " + data.main.humidity;
+        const data: any = (await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${postal},ca&units=metric&appId=${process.env.WEATHER_API_TOKEN}`)).data;
+        return "Weather in " + data.name + " - " + data.weather[0].main + ", temp : " + data.main.temp + ", feels like : " + data.main.feels_like + ", humidity : " + data.main.humidity;
     } catch (error) {
         console.error(error);
         return "Error. Couldn't get it.";
@@ -139,7 +139,7 @@ client.on('interactionCreate', async (interaction) => {
             await interaction.reply(kimsungmoImgs[Math.floor(Math.random() * kimsungmoImgs.length)]);
             break;
         case 'weather':
-            await  interaction.reply(await weatherRenderer());
+            await  interaction.reply(await weatherRenderer(interaction.options.getString('postal')));
             break;
         case 'emperor':
             const tronaldQuoteRaw: any = await getRandomTronaldQuote();
