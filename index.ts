@@ -135,7 +135,7 @@ const pickLunchSpots = async (postal: string | null) => {
                 location: [lat, lng],
                 radius: 5000,
                 type: 'restaurant',
-                maxprice: 2,
+                maxprice: 1,
                 opennow: true,
                 key: process.env.GMAP_API_KEY || '',
             }
@@ -149,7 +149,7 @@ const pickLunchSpots = async (postal: string | null) => {
 
         const pickedOne = processedResults[Math.floor(Math.random() * processedResults.length)];
 
-        return `How about lunch from **${pickedOne.name}\nLocated at ${pickedOne.address}**? It has a Google rating of **${pickedOne.google_rating}**`;
+        return `How about lunch from **${pickedOne.name}**\nLocated at ${pickedOne.address}? It has a Google rating of **${pickedOne.google_rating}**`;
     } catch (e) {
         console.error("Failed to fetch nearby restaurants.");
         console.error(e);
