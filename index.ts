@@ -2,8 +2,7 @@ import { Client, Intents } from 'discord.js';
 import axios from 'axios';
 import { Client as GMapClient } from '@googlemaps/google-maps-services-js';
 import { getRandomTronaldQuote } from './tronald_quotes';
-import { createQuizEmbed } from './quiz-embed';
-import { MessageAttachment } from 'discord.js';
+import { generateQuiz } from './quiz-boss/quiz-generator';
 
 const client = new Client({intents: [Intents.FLAGS.GUILDS] });
 
@@ -157,26 +156,6 @@ const pickLunchSpots = async (postal: string | null) => {
     }
 }
 
-const techQuizRenderer = async (category: string | null) => {
-    if (category === null) return "Error. Invalid category provided.";
-    try {
-        const data: any = (await axios.get(`https://quizapi.io/api/v1/questions`, {
-            params: {
-                apiKey: process.env.QUIZAPI_API_TOKEN,
-                limit: 1,
-                category: category
-            }
-        })).data;
-
-        return data[0];
-    } catch (error) {
-        console.error(error);
-        return "Error. Couldn't get a quiz.";
-    }
-}
-
-const wait = require('util').promisify(setTimeout);
-
 client.on('interactionCreate', async (interaction) => {
     if (!interaction.isCommand()) return;
 
@@ -213,14 +192,7 @@ client.on('interactionCreate', async (interaction) => {
             await interaction.reply(await pickLunchSpots(interaction.options.getString('postal')));
             break;
         case 'quiz':
-            const quizData = await techQuizRenderer(interaction.options.getString('category'));
-            const quizEmbed = await createQuizEmbed(quizData, false);
-            const file = new MessageAttachment('./quiz_boss.jpg');
-            await interaction.reply({ embeds: [quizEmbed], files: [file] });
-            await wait(10000);
-            const quizReplyEmbed = await createQuizEmbed(quizData, true);
-            const replyFile = new MessageAttachment('./omitted.jpg');
-            await interaction.editReply({ embeds: [quizReplyEmbed], files: [replyFile] });
+            generateQuiz(interaction);
             break;
         default:
             break;
