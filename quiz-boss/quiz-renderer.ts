@@ -1,24 +1,33 @@
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
+import { CleanQuiz, DirtyQuiz } from "./quiz";
 
 export class QuizRenderer {
+    private static LIMIT = 1;
+    private static QUIZ_API_URL = "https://quizapi.io/api/v1/questions";
 
-    constructor() {}
+    private constructor() {}
 
-    public static async fetchQuizData(category: string | null): Promise<any> {
-        if (category === null) return "Error. Invalid category provided.";
+    public static async fetchQuizData(category: string | null): Promise<CleanQuiz> {
+        if (category === null) {
+            return Promise.reject(new Error("Invalid category provided."));
+        }
+
         try {
-            const data: any = (await axios.get(`https://quizapi.io/api/v1/questions`, {
+            const response: AxiosResponse<DirtyQuiz[]> = await axios.get(this.QUIZ_API_URL, {
                 params: {
                     apiKey: process.env.QUIZAPI_API_TOKEN,
-                    limit: 1,
+                    limit: this.LIMIT,
                     category: category
                 }
-            })).data;
-    
-            return data[0];
+            });
+
+            if (response.data.length === this.LIMIT) {
+                return new CleanQuiz(response.data[0]);
+            } else {
+                return Promise.reject(new Error("Not enough data."));
+            }
         } catch (error) {
-            console.error(error);
-            return "Error. Couldn't get a quiz.";
+            return Promise.reject(new Error("Couldn't get a quiz."));
         }
     }
 }

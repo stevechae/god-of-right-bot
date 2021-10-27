@@ -9,17 +9,13 @@ export interface DirtyQuiz {
     readonly correct_answer: string | null;
     readonly explanation: string | null;
     readonly tip: string | null;
-    readonly tags: Tag[];
     readonly category: string;
     readonly difficulty: string;
 }
 
 export interface Choice {
-    readonly [choice: string]: string;
-}
-
-export interface Tag {
     readonly name: string;
+    readonly value: string;
 }
 
 export class CleanQuiz {
@@ -29,7 +25,6 @@ export class CleanQuiz {
     readonly answers: string[];
     readonly explanation: string | null;
     readonly tip: string | null;
-    readonly tags: Tag[];
     readonly category: string;
     readonly difficulty: string;
 
@@ -40,7 +35,6 @@ export class CleanQuiz {
         this.answers = parseAnswersFrom(dirtyQuiz);
         this.explanation = dirtyQuiz.explanation;
         this.tip = dirtyQuiz.tip;
-        this.tags = dirtyQuiz.tags;
         this.category = dirtyQuiz.category;
         this.difficulty = dirtyQuiz.difficulty;
     }
@@ -50,7 +44,7 @@ const parseChoicesFrom = (dirtyQuiz: DirtyQuiz): Choice[] => {
     const result: Choice[] = [];
     for (const [key, value] of Object.entries(dirtyQuiz.answers)) {
         if (key && value && typeof key === 'string' && key.length === 8) {
-            result.push({ [key.charAt(7).toUpperCase()]: value });
+            result.push({ name: key.charAt(7).toUpperCase(), value: value });
         } else if (typeof key !== 'string') {
             console.debug(`QuizAPI returned a weird choice object; key: ${key}, value: ${value}`);
         }
@@ -77,7 +71,7 @@ const parseAnswersFrom = (dirtyQuiz: DirtyQuiz): string[] => {
         return [dirtyQuiz.correct_answer.trim().charAt(7).toUpperCase()];
     }
 
-    if (dirtyQuiz.multiple_correct_answers.trim() === 'true') {
+    if (dirtyQuiz.multiple_correct_answers.trim() === 'true' || dirtyQuiz.correct_answer) {
         return transformCorrectAnswers(dirtyQuiz);
     }
 

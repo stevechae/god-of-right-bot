@@ -1,0 +1,28 @@
+{
+    "id": 736,
+    "question": "How to scale a replicaset named 'foo' to 3?",
+    "description": null,
+    "answers": {
+        "answer_a": "kubectl scale --replicas=3 rs/foo",
+        "answer_b": "kubectl up --replicas=3 rs/foo",
+        "answer_c": "kubectl update --replicas=3 rs/foo",
+        "answer_d": "kubectl deploy  --replicas=3 rs/foo",
+        "answer_e": null,
+        "answer_f": null
+    },
+    "multiple_correct_answers": "false",
+    "correct_answers": {
+        "answer_a_correct": "true",
+        "answer_b_correct": "false",
+        "answer_c_correct": "false",
+        "answer_d_correct": "false",
+        "answer_e_correct": "false",
+        "answer_f_correct": "false"
+    },
+    "correct_answer": "answer_a",
+    "explanation": null,
+    "tip": null,
+    "tags": [ ],
+    "category": "Linux",
+    "difficulty": "Hard"
+}
