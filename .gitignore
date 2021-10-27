@@ -114,7 +114,4 @@ index.js
 
 config*.json
 
-.yarn/cache
-.yarn/unplugged
-.yarn/install-state.gz
 .editorconfig
