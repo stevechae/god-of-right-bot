@@ -9,7 +9,7 @@ export class QuizRenderer {
 
     public static async fetchQuizData(category: string | null): Promise<CleanQuiz> {
         if (category === null) {
-            return Promise.reject(new Error("Invalid category provided."));
+            throw new Error("Invalid category provided.");
         }
 
         try {
@@ -24,10 +24,10 @@ export class QuizRenderer {
             if (response.data.length === this.LIMIT) {
                 return new CleanQuiz(response.data[0]);
             } else {
-                return Promise.reject(new Error("Not enough data."));
+                throw new Error("Not enough data.");
             }
         } catch (error) {
-            return Promise.reject(new Error("Couldn't get a quiz."));
+            throw new Error("Couldn't get a quiz.");
         }
     }
 }

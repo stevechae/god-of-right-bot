@@ -7,12 +7,7 @@ export const createQuizEmbed = (quizData: CleanQuiz, isReply: boolean): MessageE
         .setColor("#0099ff")
         .setTitle(`Question : ${quizData.question}`)
         .addFields(
-            quizData.choices.map((choice: Choice) => {
-                return { 
-                    name: choice.name,
-                    value: choice.value,
-                }
-            })
+            quizData.choices.map((choice: Choice) => ( { name: choice.name, value: choice.value } ))
         )
         .setThumbnail("attachment://quiz_boss.jpg");;
 

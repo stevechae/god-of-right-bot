@@ -11,10 +11,10 @@ export const WAIT_TIME_MILLISECONDS = 20000;
 export const generateQuiz = async (interaction: CommandInteraction): Promise<void> => {
     const cleanQuiz: CleanQuiz = await QuizRenderer.fetchQuizData(interaction.options.getString("category"));
     const quizEmbed: MessageEmbed = createQuizEmbed(cleanQuiz, false);
-    const file = new MessageAttachment("./quiz-boss/quiz_boss.jpg");
+    const file: MessageAttachment = new MessageAttachment("./quiz-boss/quiz_boss.jpg");
     await interaction.reply({ embeds: [quizEmbed], files: [file] });
     await wait(WAIT_TIME_MILLISECONDS);
-    const quizReplyEmbed = createQuizEmbed(cleanQuiz, true);
-    const replyFile = new MessageAttachment("./omitted.jpg");
+    const quizReplyEmbed: MessageEmbed = createQuizEmbed(cleanQuiz, true);
+    const replyFile: MessageAttachment = new MessageAttachment("./omitted.jpg");
     await interaction.editReply({ embeds: [quizReplyEmbed], files: [replyFile] });
 }

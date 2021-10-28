@@ -40,17 +40,20 @@ export class CleanQuiz {
     }
 }
 
+const ANSWER_KEY_LENGTH = 8;
+const CORRECT_ANSWER_KEY_LENGTH = 16;
+
 const parseChoicesFrom = (dirtyQuiz: DirtyQuiz): Choice[] => {
     const result: Choice[] = [];
     for (const [key, value] of Object.entries(dirtyQuiz.answers)) {
-        if (key && value && typeof key === 'string' && key.length === 8) {
-            result.push({ name: key.charAt(7).toUpperCase(), value: value });
-        } else if (typeof key !== 'string') {
-            console.debug(`QuizAPI returned a weird choice object; key: ${key}, value: ${value}`);
+        if (key && value && key.length === ANSWER_KEY_LENGTH) {
+            result.push( { name: capitalizeChoice(key), value: value } );
         }
     }
     return result;
 }
+
+const capitalizeChoice = (answerKey: string): string => answerKey.charAt(7).toUpperCase();
 
 const parseAnswersFrom = (dirtyQuiz: DirtyQuiz): string[] => {
     if (!dirtyQuiz.multiple_correct_answers || typeof dirtyQuiz.multiple_correct_answers !== 'string') {
@@ -66,9 +69,9 @@ const parseAnswersFrom = (dirtyQuiz: DirtyQuiz): string[] => {
     if (
         dirtyQuiz.correct_answer &&
         dirtyQuiz.multiple_correct_answers.trim() === 'false' &&  
-        dirtyQuiz.correct_answer.trim().length === 16
+        dirtyQuiz.correct_answer.trim().length === CORRECT_ANSWER_KEY_LENGTH
     ) {
-        return [dirtyQuiz.correct_answer.trim().charAt(7).toUpperCase()];
+        return [ capitalizeChoice(dirtyQuiz.correct_answer.trim()) ];
     }
 
     if (dirtyQuiz.multiple_correct_answers.trim() === 'true' || dirtyQuiz.correct_answer) {
