@@ -105,8 +105,13 @@ dist
 
 config-test.json
 
-*.js
+quiz-boss/*.js
+deploy-command.js
+tronald_quotes.js
+index.js
 
 .idea
 
 config*.json
+
+.editorconfig
