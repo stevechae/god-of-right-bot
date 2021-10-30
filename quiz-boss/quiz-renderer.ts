@@ -1,27 +1,38 @@
-import axios, { AxiosResponse } from "axios";
+import { AxiosRequestConfig, AxiosResponse } from "axios";
 import { CleanQuiz, DirtyQuiz } from "./quiz";
 
 export class QuizRenderer {
-    private static LIMIT = 1;
-    private static QUIZ_API_URL = "https://quizapi.io/api/v1/questions";
+    private quizApiUrl: string;
+    private apiKey: string | undefined;
 
-    private constructor() {}
+    constructor(quizApiUrl: string, apiKey: string | undefined) {
+        if (!apiKey) {
+            throw new Error("API Key is missing.");
+        }
 
-    public static async fetchQuizData(category: string | null): Promise<CleanQuiz> {
-        if (category === null) {
+        this.quizApiUrl = quizApiUrl;
+        this.apiKey = apiKey;
+    }
+
+    public async fetchQuizData(
+        category: string | null,
+        limit: number,
+        fetchDirtyQuiz: (quizApiUrl: string, config?: AxiosRequestConfig<DirtyQuiz[]>) => Promise<AxiosResponse<DirtyQuiz[]>>
+    ): Promise<CleanQuiz> {
+        if (!category) {
             throw new Error("Invalid category provided.");
         }
 
         try {
-            const response: AxiosResponse<DirtyQuiz[]> = await axios.get(this.QUIZ_API_URL, {
+            const response: AxiosResponse<DirtyQuiz[]> = await fetchDirtyQuiz(this.quizApiUrl, {
                 params: {
-                    apiKey: process.env.QUIZAPI_API_TOKEN,
-                    limit: this.LIMIT,
+                    apiKey: this.apiKey,
+                    limit: limit,
                     category: category
                 }
             });
 
-            if (response.data.length === this.LIMIT) {
+            if (response.data.length === limit) {
                 return new CleanQuiz(response.data[0]);
             } else {
                 throw new Error("Not enough data.");

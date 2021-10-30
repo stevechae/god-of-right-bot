@@ -92,10 +92,8 @@ const transformCorrectAnswers = (dirtyQuiz: DirtyQuiz): string[] => {
         typeof dirtyQuiz.correct_answers === 'object'
     ) {
         return Object.keys(dirtyQuiz.correct_answers)
-            .filter(key => dirtyQuiz.correct_answers[key] === 'true')
-            .map(key => {
-                return key.trim().charAt(7).toUpperCase();
-            });
+            .filter((key: string) => dirtyQuiz.correct_answers[key] === 'true')
+            .map((key: string) => capitalizeChoice(key.trim()));
     } else {
         console.debug('QuizAPI : type of `correct_answers` should be object.');
         return [];
