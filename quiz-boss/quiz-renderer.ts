@@ -10,7 +10,7 @@ export class QuizRenderer {
             throw new Error("Quiz API URL is missing.");
         }
 
-        if (!apiKey || (apiKey && apiKey.length === 0)) {
+        if (!apiKey || (apiKey && apiKey.trim().length === 0)) {
             throw new Error("API Key is missing.");
         }
 
