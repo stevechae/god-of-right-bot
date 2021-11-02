@@ -2,11 +2,15 @@ import { AxiosRequestConfig, AxiosResponse } from "axios";
 import { CleanQuiz, DirtyQuiz } from "./quiz";
 
 export class QuizRenderer {
-    private quizApiUrl: string;
-    private apiKey: string | undefined;
+    private readonly quizApiUrl: string;
+    private readonly apiKey: string | undefined;
 
     constructor(quizApiUrl: string, apiKey: string | undefined) {
-        if (!apiKey) {
+        if (quizApiUrl.trim().length === 0) {
+            throw new Error("Quiz API URL is missing.");
+        }
+
+        if (!apiKey || (apiKey && apiKey.length === 0)) {
             throw new Error("API Key is missing.");
         }
 
