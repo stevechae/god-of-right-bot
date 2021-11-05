@@ -16,7 +16,7 @@ client.once('ready', () => {
 });
 
 const pickKsmMeme = () =>
-    `https://github.com/stevechae/god-of-right-bot/blob/main/ksm-memes/${Math.floor(Math.random() * KSM_MEME_COUNT)}.jpg`
+    `https://github.com/stevechae/god-of-right-bot/blob/main/ksm-memes/${Math.floor(Math.random() * KSM_MEME_COUNT)}.jpg?raw=true`
 
 const iexUrl = process.env.IEX_API_URL;
 
