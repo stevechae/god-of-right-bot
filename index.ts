@@ -4,7 +4,8 @@ import { Client as GMapClient } from '@googlemaps/google-maps-services-js';
 import { getRandomTronaldQuote } from './tronald_quotes';
 import { generateQuiz } from './quiz-boss/quiz-generator';
 import { bikeFailGifs } from './memes/bike-fail-gifs.json';
-import { kimsungmoImgs } from './memes/ksm.json';
+
+const KSM_MEME_COUNT = 20;
 
 const client = new Client({intents: [Intents.FLAGS.GUILDS] });
 
@@ -13,6 +14,9 @@ const gmapClient = new GMapClient({});
 client.once('ready', () => {
     console.log('Ready!');
 });
+
+const pickKsmMeme = () =>
+    `https://github.com/stevechae/god-of-right-bot/blob/main/ksm-memes/${Math.floor(Math.random() * KSM_MEME_COUNT)}.jpg`
 
 const iexUrl = process.env.IEX_API_URL;
 
@@ -129,7 +133,7 @@ client.on('interactionCreate', async (interaction) => {
             await interaction.reply(`Bitgoin USD: $${data.price}`);
             break;
         case 'ksm':
-            await interaction.reply(kimsungmoImgs[Math.floor(Math.random() * kimsungmoImgs.length)]);
+            await interaction.reply(pickKsmMeme());
             break;
         case 'weather':
             await  interaction.reply(await weatherRenderer(interaction.options.getString('postal')));
