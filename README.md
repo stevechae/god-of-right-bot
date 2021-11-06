@@ -1,5 +1,5 @@
-# bike-break-leg-bot
+# god-of-right-bot
 
-Discord bot for jokes.
+Discord ai bot for serious people.
 
 ![alt text](https://github.com/stevechae/gold-of-right-bot/blob/main/omitted.jpg?raw=true)
