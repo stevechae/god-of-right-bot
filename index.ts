@@ -101,7 +101,8 @@ const stockStuffRenderer = async (symbol: string | null) => {
 const weatherRenderer = async (postal: string | null) => {
     try {
         const data: any = (await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${postal},ca&units=metric&appId=${process.env.WEATHER_API_TOKEN}`)).data;
-        return "Weather in " + data.name + " - " + data.weather[0].main + ", temp : " + data.main.temp + ", feels like : " + data.main.feels_like + ", humidity : " + data.main.humidity;
+        return "Weather in " + data.name + " - " + data.weather[0].main + ", temp : " + data.main.temp + ", feels like : " + data.main.feels_like + ", humidity : " + data.main.humidity +
+        ", wind : " + data.wind.speed;
     } catch (error) {
         console.error(error);
         return "Error. Couldn't get it.";
